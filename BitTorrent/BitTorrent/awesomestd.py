@@ -16,29 +16,16 @@ class awesomestd(Peer):
         ##################################################################################
         # Declare any variables here that you want to be able to access in future rounds #
         ##################################################################################
-        # # Initialize a list to keep track of which pieces the peer has already requested
-        # self.requested_pieces = []
-        #
-        # # Initialize a dictionary to keep track of the number of times each piece has been requested
-        # self.piece_frequencies = {}
-        #
-        # # Initialize a list to keep track of which peers the client is currently unchoked with
-        # self.unchoked_peers = []
-        #
-        # # Initialize a variable to keep track of the number of rounds that have passed
-        # self.round_number = 0
-        #
-        # # Initialize a list to keep track of the download rate from each peer
-        # self.peer_download_rates = []
-        self.curRequests = [];
-        self.curPeers =[];
-        self.curHistory=[];
+
+        self.numUploadSLots = []
+
+
 
 
         #This commented out code is and example of a python dictionsary,
         #which is a convenient way to store a value indexed by a particular "key"
-        #self.dummy_state = dict()
-        #self.dummy_state["cake"] = "lie"
+        # self.dummy_state = dict()
+        # self.dummy_state["cake"] = "lie"
 
     def requests(self, peers, history):
         """
@@ -130,12 +117,28 @@ class awesomestd(Peer):
             # The dummy client picks a single peer at random to unchoke.           #
             # You should decide a set of peers to unchoke accoring to the protocol #
             ########################################################################
-            # request = random.choice(requests)
-            # chosen = [request.requester_id]
+
+            ourDict = dict()
+            # for peer in peers:
+            #
+            print(history.downloads)
+                # theDownload = history.downloads(peer.id)
+                # ourDict[peer.id] = theDownload
+                # print(theDownload[round][0])
+
+            chosen = [max(ourDict, key = ourDict.pop), max(ourDict, key = ourDict.pop), max(ourDict, key = ourDict.pop)]
+            ## selecting the top three with the most download speeds to unchoke
+
+
+
+            # if round%3 == 0:
+            #     request = random.choice(requests)
+            #
+            # chosen = [request.requester_id, , ]
             
 
-            for peer in range(peers):
-                (tempID,tempDownload, tempUpload) = history.peer_history(peer.id)
+            # for peer in range(peers):
+            #     (tempID,tempDownload, tempUpload) = history.peer_history(peer.id)
 
 
 
